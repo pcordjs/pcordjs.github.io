@@ -1,4 +1,4 @@
 export default {
-  '*.{ts,js,json}': () => ['tsc', 'vite build'],
-  '*.ts': (files) => [`eslint ${files.join(' ')}`]
+  '*.{ts{x,},{c,m,}js,json}': () => ['tsc', 'vite build'],
+  '*.ts{x,}': (files) => [`eslint ${files.join(' ')}`]
 };
