@@ -1,0 +1,6 @@
+{
+  "extends": "@pcordjs",
+  "parserOptions": {
+    "project": "./tsconfig.eslint.json"
+  }
+}
