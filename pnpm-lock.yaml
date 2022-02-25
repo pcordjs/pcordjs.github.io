@@ -4,6 +4,7 @@ specifiers:
   '@babel/core': ^7.17.5
   '@commitlint/cli': ^16.2.1
   '@commitlint/config-angular': ^16.2.1
+  '@fortawesome/fontawesome-free': ^6.0.0
   '@pcordjs/eslint-config': ^1.1.0
   '@preact/preset-vite': ^2.1.7
   '@typescript-eslint/eslint-plugin': ^5.12.1
@@ -26,6 +27,7 @@ devDependencies:
   '@babel/core': 7.17.5
   '@commitlint/cli': 16.2.1
   '@commitlint/config-angular': 16.2.1
+  '@fortawesome/fontawesome-free': 6.0.0
   '@pcordjs/eslint-config': 1.1.0_0eb0436f97cf8e97b399ea461eb0fdc0
   '@preact/preset-vite': 2.1.7_698d816b37024fcdfcf21e366e54063a
   '@typescript-eslint/eslint-plugin': 5.12.1_aa3af6382115a42a71cc388b7b2c30b3
@@ -471,6 +473,12 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@fortawesome/fontawesome-free/6.0.0:
+    resolution: {integrity: sha512-6LB4PYBST1Rx40klypw1SmSDArjFOcfBf2LeX9Zg5EKJT2eXiyiJq+CyBYKeXyK0sXS2FsCJWSPr/luyhuvh0Q==}
+    engines: {node: '>=6'}
+    requiresBuild: true
     dev: true
 
   /@humanwhocodes/config-array/0.9.3:
