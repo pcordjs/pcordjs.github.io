@@ -1,7 +1,7 @@
 import { Component } from 'preact';
 import styles from './typewriter.module.css';
 
-const SPEED = 300;
+const SPEED = 150;
 const START_DELAY = 1500;
 
 export interface TypewriterProps {
