@@ -7,10 +7,7 @@ export default defineConfig({
   plugins: [
     preact(),
     checker({
-      typescript: true,
-      eslint: {
-        lintCommand: 'eslint src'
-      }
+      typescript: true
     })
   ]
 });
