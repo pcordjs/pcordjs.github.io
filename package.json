@@ -1,10 +1,24 @@
 {
   "name": "pcordjs.github.io",
   "version": "0.1.0",
-  "description": "pcordjs Homepage",
-  "dependencies": {
-    "preact": "^10.6.6"
+  "description": "Homepage for the pcordjs framework",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pcordjs/pcordjs.github.io.git"
   },
+  "private": true,
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview",
+    "lint": "eslint",
+    "typeCheck": "tsc",
+    "prepare": "husky install"
+  },
+  "contributors": [
+    "doinkythederp"
+  ],
+  "author": "@pcordjs",
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@commitlint/cli": "^16.2.1",
@@ -19,17 +33,10 @@
     "husky": "^7.0.4",
     "lint-staged": "^12.3.4",
     "postcss": "^8.4.6",
+    "preact": "^10.6.6",
     "tailwindcss": "^3.0.23",
     "typescript": "^4.5.5",
     "vite": "^2.8.4",
     "vite-plugin-checker": "^0.4.2"
-  },
-  "scripts": {
-    "build": "vite build",
-    "dev": "vite",
-    "preview": "vite preview",
-    "lint": "eslint",
-    "typeCheck": "tsc",
-    "prepare": "husky install"
   }
 }
