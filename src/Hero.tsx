@@ -4,7 +4,8 @@ const taglinePhrases = [
   'modular',
   'work-in-progress',
   'flexible',
-  'fully typed'
+  'fully typed',
+  'engineerable'
 ];
 
 export default function Hero() {
