@@ -1,6 +1,7 @@
 import Header from './Header';
 import Hero from './Hero';
 import PageContent from './PageContent';
+import { Project, ProjectList } from './Projects';
 import tsLogo from './ts-logo-128.svg';
 
 export default function App() {
@@ -18,6 +19,33 @@ export default function App() {
           Most modules have not started development, or are in the pre-release
           stage. Expect lacking documentation and somewhat unreliable code.
         </p>
+        <ProjectList>
+          <Project
+            name="FooBar"
+            description="A really really really long foo bar baz library."
+            repoUrl="#"
+          />
+          <Project
+            name="FooBar"
+            description="A foo bar baz library."
+            repoUrl="#"
+          />
+          <Project
+            name="FooBar"
+            description="A foo bar baz library."
+            repoUrl="#"
+          />
+          <Project
+            name="FooBar"
+            description="A foo bar baz library."
+            repoUrl="#"
+          />
+          <Project
+            name="FooBar"
+            description="A foo bar baz library."
+            repoUrl="#"
+          />
+        </ProjectList>
       </PageContent>
     </div>
   );
