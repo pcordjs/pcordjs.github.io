@@ -8,9 +8,9 @@ export interface ProjectListProps {
 export function ProjectList(props: ProjectListProps) {
   return (
     <div>
-      <Heading>Projects</Heading>
-      <div class="m-3 flex bg-gray-100 dark:bg-gray-900 p-8 gap-8 flex-wrap">
-        {props.children}
+      <div class="p-4 mb-3 bg-gray-100 dark:bg-gray-900 rounded-lg">
+        <Heading>Projects</Heading>
+        <div class="flex p-4 gap-8 flex-wrap">{props.children}</div>
       </div>
     </div>
   );
