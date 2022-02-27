@@ -9,7 +9,7 @@ export function ProjectList(props: ProjectListProps) {
   return (
     <div>
       <Heading>Projects</Heading>
-      <div class="m-3 flex bg-gray-100 p-8 gap-8 flex-wrap">
+      <div class="m-3 flex bg-gray-100 dark:bg-gray-900 p-8 gap-8 flex-wrap">
         {props.children}
       </div>
     </div>
@@ -24,12 +24,12 @@ export interface ProjectProps {
 
 export function Project(props: ProjectProps) {
   return (
-    <article class="text-left bg-white rounded-lg flex-auto shadow basis-0 min-w-[14rem] flex flex-col justify-between">
+    <article class="text-left bg-white dark:bg-gray-700 rounded-lg flex-auto shadow basis-0 min-w-[14rem] flex flex-col justify-between">
       <div class="p-4">
         <h3 class="font-semibold text-lg font-title">{props.name}</h3>
         <p class="text-gray-400 antialiased">{props.description}</p>
       </div>
-      <div class="bg-gray-100 p-4 rounded-b-lg flex items-center gap-4">
+      <div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-b-lg flex items-center gap-4">
         {/* TODO(@doinkythederp): make this a button that shows a modal */}
         <a
           href={props.repoUrl}

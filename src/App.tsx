@@ -6,7 +6,7 @@ import tsLogo from './ts-logo-128.svg';
 
 export default function App() {
   return (
-    <div class="h-screen bg-white dark:bg-gray-700 dark:text-white">
+    <>
       <Header />
       <Hero />
       <PageContent>
@@ -47,6 +47,6 @@ export default function App() {
           />
         </ProjectList>
       </PageContent>
-    </div>
+    </>
   );
 }
