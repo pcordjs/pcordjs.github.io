@@ -1,5 +1,6 @@
 import { ComponentChildren } from 'preact';
 import Heading from './Heading';
+import Link from './Link';
 
 export interface ProjectListProps {
   children: ComponentChildren;
@@ -37,12 +38,9 @@ export function Project(props: ProjectProps) {
         >
           Install
         </a>
-        <a href={props.repoUrl} class="space-x-2 group">
-          <i class="fa-brands fa-github" />
-          <span class="text-gray-400 group-focus:underline group-hover:underline">
-            Source
-          </span>
-        </a>
+        <Link href={props.repoUrl} icon="fa-brands fa-github">
+          <span class="text-gray-400">Source</span>
+        </Link>
       </div>
     </article>
   );

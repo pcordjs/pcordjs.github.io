@@ -1,5 +1,24 @@
-import HeaderLink from './HeaderLink';
+import Link from './Link';
 import HeaderLogo from './HeaderLogo';
+import { ComponentChildren } from 'preact';
+
+interface HeaderLinkProps {
+  href: string;
+  icon: string;
+  children: ComponentChildren;
+}
+
+function HeaderLink(props: HeaderLinkProps) {
+  return (
+    <Link
+      href={props.href}
+      icon={`${props.icon} text-2xl sm:text-xl -mr-2 sm:mr-0`}
+      hoverBox
+    >
+      <span class="font-light hidden sm:inline">{props.children}</span>
+    </Link>
+  );
+}
 
 export default function Header() {
   return (
@@ -12,7 +31,7 @@ export default function Header() {
         </span>
       </a>
       {/* End of header - links and buttons */}
-      <div>
+      <div class="text-xl space-x-1">
         <HeaderLink
           href="https://github.com/pcordjs"
           icon="fa-brands fa-github"
