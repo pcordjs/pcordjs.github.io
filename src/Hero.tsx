@@ -10,7 +10,7 @@ const taglinePhrases = [
 
 export default function Hero() {
   return (
-    <div class="h-[40vh] sm:h-[60vh] bg-gray-200 dark:bg-gray-800 flex justify-center items-center">
+    <div class="h-[40vh] sm:h-[60vh] bg-gray-200 dark:bg-gray-800 bg-gradient-to-tr from-indigo-300 dark:from-indigo-900 flex justify-center items-center">
       <h1 class="text-3xl sm:text-4xl w-1/2 text-center">
         The{' '}
         <span class="text-rose-500 underline">
