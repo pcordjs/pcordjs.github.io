@@ -1,5 +1,6 @@
 import Header from './Header';
 import Hero from './Hero';
+import ModalRoot from './ModalRoot';
 import PageContent from './PageContent';
 import { ProjectList } from './Projects';
 import tsLogo from './ts-logo-128.svg';
@@ -7,6 +8,7 @@ import tsLogo from './ts-logo-128.svg';
 export default function App() {
   return (
     <>
+      <ModalRoot />
       <Header />
       <Hero />
       <PageContent>
