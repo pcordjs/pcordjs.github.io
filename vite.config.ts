@@ -13,5 +13,10 @@ export default defineConfig({
     legacy({
       targets: ['defaults', 'not IE 11']
     })
-  ]
+  ],
+  resolve: {
+    alias: {
+      'node-fetch': './src/polyfills/node-fetch.ts'
+    }
+  }
 });
