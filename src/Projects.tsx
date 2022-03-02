@@ -4,6 +4,8 @@ import Link from './Link';
 import { useEffect, useState } from 'preact/hooks';
 import LoadingSpinner from './LoadingSpinner';
 import { Project, fetchProjects, checkInstallable } from './loadProjects';
+import { useModal } from './ModalRoot';
+import Modal from './Modal';
 
 let reposResolved: ReturnType<typeof fetchProjects> | null = null;
 let checkInstallableResolved: ReturnType<typeof checkInstallable> | null = null;
@@ -13,6 +15,24 @@ export interface ProjectProps {
 }
 
 export function ProjectCard(props: ProjectProps) {
+  const [, setInstallOpen] = useModal(() => (
+    <Modal onClose={() => setInstallOpen(false)}>
+      <h1 class="text-4xl font-bold text-center mb-8">
+        Install{' '}
+        <code class="px-2 bg-gray-200 dark:bg-gray-800 rounded-xl">
+          {props.project?.name ?? '<project>'}
+        </code>
+      </h1>
+      <div class="text-lg space-y-4">
+        <p>
+          Instructions to install this project go here but I haven't thought of
+          them yet because this is just a development release 😔
+        </p>
+        <p>wow is this long enough yet??</p>
+      </div>
+    </Modal>
+  ));
+
   let articleClass =
     'text-left bg-white dark:bg-gray-700 rounded-lg flex-auto shadow basis-0 min-w-[14rem] flex flex-col justify-between';
   if (!props.project) articleClass += ' animate-pulse';
@@ -29,7 +49,7 @@ export function ProjectCard(props: ProjectProps) {
     } else installButtonClasses += ' bg-gray-300 dark:bg-gray-500 cursor-wait';
 
     return !props.project || props.project.installable !== false ? (
-      <button class={installButtonClasses}>
+      <button class={installButtonClasses} onClick={() => setInstallOpen(true)}>
         <div class={props.project ? 'py-0.5' : 'invisible'}>
           {typeof props.project?.installable === 'boolean' ? (
             'Install'
