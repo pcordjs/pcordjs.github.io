@@ -12,6 +12,11 @@ export interface Project {
   id: number;
 }
 
+let cacheExpireTime: number | null = Number(
+  import.meta.env.VITE_PROJECTS_CACHE_EXPIRY ?? 1000 * 60 * 60
+);
+if (cacheExpireTime === -1) cacheExpireTime = null;
+
 function cacheProjects(projects: Project[]) {
   localStorage.setItem('projects', JSON.stringify(projects));
   localStorage.setItem('lastUpdated', JSON.stringify(Date.now()));
@@ -23,7 +28,9 @@ function getCachedProjects() {
   const lastUpdated = localStorage.getItem('lastUpdated');
   // cache is only valid for 1 hour in case a project changes
   return projects &&
-    (!lastUpdated || Date.now() - JSON.parse(lastUpdated) < 1000 * 60 * 60)
+    (!lastUpdated ||
+      cacheExpireTime === null ||
+      Date.now() - JSON.parse(lastUpdated) < cacheExpireTime)
     ? (JSON.parse(projects) as Project[])
     : null;
 }
