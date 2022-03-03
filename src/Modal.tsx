@@ -25,7 +25,7 @@ export default function Modal(props: ModalProps) {
             {!props.noCloseButton && (
               <div class="flex justify-end -mb-2">
                 <button
-                  class="text-2xl leading-[0.5] w-6 h-6 text-gray-500 hover:text-gray-700"
+                  class="text-2xl leading-[0.5] w-6 h-6 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
                   aria-label="Close"
                   onClick={props.onClose}
                 >
