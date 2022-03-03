@@ -88,7 +88,7 @@ export function ProjectCard(props: ProjectProps) {
                 );
               })}
             </div>
-            <pre class="bg-gray-100 dark:bg-gray-800 px-8 py-4 flex items-center justify-between rounded rounded-tl-none">
+            <div class="bg-gray-100 dark:bg-gray-800 px-4 py-2 sm:px-8 sm:py-4 flex items-center justify-between rounded rounded-tl-none">
               <code>{installCommand(selectedTab)}</code>
               <button
                 class="px-2 py-1 -my-1"
@@ -107,7 +107,7 @@ export function ProjectCard(props: ProjectProps) {
                   }`}
                 />
               </button>
-            </pre>
+            </div>
           </div>
         </div>
       </Modal>
