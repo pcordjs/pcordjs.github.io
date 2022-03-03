@@ -6,6 +6,7 @@ import LoadingSpinner from './LoadingSpinner';
 import { Project, fetchProjects, checkInstallable } from './loadProjects';
 import { useModal } from './ModalRoot';
 import Modal from './Modal';
+import InlineCode from './InlineCode';
 
 let reposResolved: ReturnType<typeof fetchProjects> | null = null;
 let checkInstallableResolved: ReturnType<typeof checkInstallable> | null = null;
@@ -14,24 +15,104 @@ export interface ProjectProps {
   project?: Project;
 }
 
+enum InstallTab {
+  NPM,
+  PNPM,
+  YARN
+}
+
+function setPreferredPackageManager(tab: InstallTab) {
+  localStorage.setItem('preferredPackageManager', JSON.stringify(tab));
+}
+
+function getPreferredPackageManager() {
+  const manager = localStorage.getItem('preferredPackageManager');
+  if (!manager) return InstallTab.NPM;
+  return JSON.parse(manager) as InstallTab;
+}
 export function ProjectCard(props: ProjectProps) {
-  const [, setInstallOpen] = useModal(() => (
-    <Modal onClose={() => setInstallOpen(false)}>
-      <h1 class="text-4xl font-bold text-center mb-8">
-        Install{' '}
-        <code class="px-2 bg-gray-200 dark:bg-gray-800 rounded-xl">
-          {props.project?.name ?? '<project>'}
-        </code>
-      </h1>
-      <div class="text-lg space-y-4">
-        <p>
-          Instructions to install this project go here but I haven't thought of
-          them yet because this is just a development release 😔
-        </p>
-        <p>wow is this long enough yet??</p>
-      </div>
-    </Modal>
-  ));
+  const [, setInstallOpen] = useModal(() => {
+    const [selectedTab, setTab] = useState<InstallTab>(
+      getPreferredPackageManager()
+    );
+    const [copied, setCopied] = useState(false);
+
+    useEffect(() => {
+      if (!copied) return;
+      const resetCopied = setTimeout(() => setCopied(false), 2000);
+      return () => {
+        clearTimeout(resetCopied);
+        setCopied(false);
+      };
+    });
+
+    const displayName = (tab: InstallTab) =>
+      tab === InstallTab.NPM
+        ? 'npm'
+        : tab === InstallTab.PNPM
+        ? 'pnpm'
+        : 'Yarn';
+
+    const installCommand = (tab: InstallTab) =>
+      `${displayName(tab).toLowerCase()} ${
+        selectedTab === InstallTab.NPM ? 'install' : 'add'
+      } @pcordjs/${props.project?.name ?? '<project>'}`;
+
+    return (
+      <Modal onClose={() => setInstallOpen(false)}>
+        <h1 class="text-4xl font-bold text-center mb-8">
+          Install <InlineCode>{props.project?.name ?? '<project>'}</InlineCode>
+        </h1>
+        <div class="text-lg space-y-4">
+          <p>
+            All pcordjs projects are distributed on the npm registry. You may
+            use any compatible package manager to install one.
+          </p>
+          <div>
+            <div>
+              {[InstallTab.NPM, InstallTab.PNPM, InstallTab.YARN].map((tab) => {
+                return (
+                  <button
+                    class={`bg-gray-100 dark:bg-gray-800 font-bold py-2 px-4 first:rounded-tl-lg last:rounded-tr-lg border-b-2 ${
+                      tab === selectedTab
+                        ? 'border-rose-500'
+                        : 'border-gray-100 dark:border-gray-800'
+                    }`}
+                    onClick={() => {
+                      setTab(tab);
+                      setPreferredPackageManager(tab);
+                    }}
+                  >
+                    {displayName(tab)}
+                  </button>
+                );
+              })}
+            </div>
+            <pre class="bg-gray-100 dark:bg-gray-800 px-8 py-4 flex items-center justify-between rounded rounded-tl-none">
+              <code>{installCommand(selectedTab)}</code>
+              <button
+                class="px-2 py-1 -my-1"
+                onClick={() => {
+                  navigator.clipboard
+                    .writeText(installCommand(selectedTab))
+                    .then(() => setCopied(true))
+                    .catch(console.error);
+                }}
+              >
+                <i
+                  class={`fa-solid ${
+                    copied
+                      ? 'fa-check text-green-600 dark:text-green-500'
+                      : 'fa-copy text-gray-500 dark:text-gray-300'
+                  }`}
+                />
+              </button>
+            </pre>
+          </div>
+        </div>
+      </Modal>
+    );
+  });
 
   let articleClass =
     'text-left bg-white dark:bg-gray-700 rounded-lg flex-auto shadow basis-0 min-w-[14rem] flex flex-col justify-between';
