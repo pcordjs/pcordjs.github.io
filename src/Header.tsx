@@ -38,9 +38,6 @@ export default function Header() {
         >
           GitHub
         </HeaderLink>
-        <HeaderLink href="#" icon="fa-solid fa-file-lines">
-          Documentation
-        </HeaderLink>
       </div>
     </div>
   );
