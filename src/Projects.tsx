@@ -142,14 +142,26 @@ export function ProjectCard(props: ProjectProps) {
     ) : null;
   }
 
+  const HeadingComponent = props.project?.hasDocs ? 'a' : 'p';
+
   return (
     <article class={articleClass}>
       <div class="p-4">
         {props.project ? (
           <>
-            <h3 class="font-semibold text-lg font-title">
+            <HeadingComponent
+              class={`font-semibold text-lg font-title ${
+                props.project?.hasDocs ? 'hover:underline focus:underline' : ''
+              }`}
+              href={
+                props.project?.hasDocs ? `/${props.project.name}` : undefined
+              }
+            >
               {props.project.name}
-            </h3>
+              {props.project?.hasDocs ? (
+                <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-gray-500 text-sm" />
+              ) : null}
+            </HeadingComponent>
             <p class="text-gray-400 antialiased">{props.project.description}</p>
           </>
         ) : (

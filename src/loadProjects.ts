@@ -10,6 +10,7 @@ export interface Project {
   url: string;
   installable: boolean | null;
   id: number;
+  hasDocs: boolean;
 }
 
 let cacheExpireTime: number | null = Number(
@@ -48,7 +49,8 @@ export const fetchProjects = () => {
             description: repo.description ?? 'No description',
             url: repo.html_url,
             installable: null,
-            id: repo.id
+            id: repo.id,
+            hasDocs: repo.has_pages ?? false
           }))
         )
         .then(cacheProjects)
